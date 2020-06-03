@@ -85,6 +85,15 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Cancel Game Of Thrones Season 8',
+    date: 'June 3rd, 2020',
+    firstParagraph: 'It ruined my life, I can never unsee it',
+
+    secondParagraph: 'I still have nightmares about how bad it was',
+
+    thirdParagraph: 'Please dear God, have mercy on all those who played a part in the making of this pile of garbage'
   }
 ];
 
@@ -111,3 +120,51 @@ const data = [
 
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 */
+const articles = document.querySelector('.articles');
+
+console.log(articles)
+
+function articleMaker(articleObj){
+  const article = document.createElement('div')
+  const title = document.createElement('h2')
+  const date = document.createElement('p')
+  const paragraph1 = document.createElement('p')
+  const paragraph2 = document.createElement('p')
+  const paragraph3 = document.createElement('p')
+  const span = document.createElement('span')
+
+  article.appendChild(title)
+  article.appendChild(date)
+  article.appendChild(paragraph1)
+  article.appendChild(paragraph2)
+  article.appendChild(paragraph3)
+  article.appendChild(span)
+  
+
+  span.addEventListener('click', event =>{
+    article.classList.toggle('article-open')
+  });
+
+  article.classList.add('article')
+  date.classList.add('date')
+  span.classList.add('expandButton')
+
+  
+
+  title.textContent = articleObj.title
+  paragraph1.textContent = articleObj.firstParagraph
+  paragraph2.textContent = articleObj.secondParagraph
+  paragraph3.textContent = articleObj.thirdParagraph
+  span.textContent = 'Read More'
+  span.style.color = 'red'
+
+
+
+  return article
+}
+
+data.forEach( articleObj => {
+  const newArticle = articleMaker(articleObj)
+  articles.appendChild(newArticle);
+})
+
